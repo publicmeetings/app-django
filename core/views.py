@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 
-# Create your views here.
+from models import Meeting
+
+
+class MeetingNew(CreateView):
+    model = Meeting
+    fields = ('title', 'topic', 'link', 'organization', 'location', 'datetime')
