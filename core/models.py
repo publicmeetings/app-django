@@ -13,10 +13,10 @@ class BaseModel(models.Model):
 
 class Meeting(BaseModel):
     title = models.CharField(max_length=255)
-    topic = models.TextField()
-    link = models.URLField()
+    topic = models.TextField(blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
     datetime = models.DateTimeField()
 
     # tmp
-    organization = models.CharField(max_length=255)
+    organization = models.CharField(max_length=255, blank=True, null=True)
     location = models.CharField(max_length=255)
