@@ -1,19 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Post a public meeting {% endblock %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'form.css' %}">
+<script src="{% static 'form.js' %}"></script>
+{% endblock %}
+
+
 {% block content %}
+<div class="container wrapper my-5">
+  <h1>Post a public meeting</h1>
 
-<h1>Post a public meeting</h1>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
-<form method='POST'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Save'>
-</form>
-
+  <form method='POST'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type='submit' value='Save' class='btn btn-primary btn-lg btn-block'>
+  </form>
+</div>
 {% endblock %}

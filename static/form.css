@@ -1,0 +1,10 @@
+.wrapper {
+  margin: auto;
+  max-width: 420px;
+}
+
+.errorlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
