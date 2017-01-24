@@ -1,0 +1,14 @@
+<h1>Meetings</h1>
+
+{% for meeting in object_list %}
+<p>
+  <b>{{ meeting.title }}</b><br>
+  {{ meeting.organization }}<br>
+  {{ meeting.topic }}<br>
+  on {{ meeting.datetime }}<br>
+  at {{ meeting.location }}<br>
+  <a href="{{ meeting.link }}">{{ meeting.link }}</a>
+</p>
+{% empty %}
+<p>No meetings yet.</p>
+{% endfor %}
