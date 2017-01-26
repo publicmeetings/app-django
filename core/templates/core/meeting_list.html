@@ -1,11 +1,23 @@
+{% load tz %}
+
 <h1>Meetings</h1>
+
+<form>
+    <select name="timezone">
+        {% for tz in common_timezones %}
+        <option value="{{ tz }}" {% if tz == timezone %} selected="selected"{% endif %}>{{ tz }}</option>
+        {% endfor %}
+    </select>
+
+    <input type='submit' value='Change Time Zone'>
+</form>
 
 {% for meeting in object_list %}
 <p>
   <b>{{ meeting.title }}</b><br>
   {{ meeting.organization }}<br>
   {{ meeting.topic }}<br>
-  on {{ meeting.datetime }}<br>
+  on {{ meeting.datetime|timezone:timezone }}<br>
   at {{ meeting.location }}<br>
   <a href="{{ meeting.link }}">{{ meeting.link }}</a>
 </p>

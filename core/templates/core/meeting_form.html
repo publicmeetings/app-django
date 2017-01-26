@@ -26,6 +26,16 @@
   <form method='POST'>
       {% csrf_token %}
       {{ form.as_p }}
+
+      <p>
+        <select name="timezone" class="form-control">
+          <option value="" selected="selected">Select time zone:</option>
+            {% for tz in common_timezones %}
+            <option value="{{ tz }}">{{ tz }}</option>
+            {% endfor %}
+        </select>
+      </p>
+
       <input type='submit' value='Save' class='btn btn-primary btn-lg btn-block'>
   </form>
 </div>
