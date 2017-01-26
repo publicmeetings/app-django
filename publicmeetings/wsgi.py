@@ -1,5 +1,5 @@
 """
-WSGI config for ekklesia project.
+WSGI config for publicmeetings project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ekklesia.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "publicmeetings.settings")
 
 application = get_wsgi_application()
