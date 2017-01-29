@@ -1,31 +1,48 @@
 {% extends 'base.html' %}
 {% load tz %}
 
+
+{% block title %}public meetings{% endblock %}
+
+
 {% block content %}
 <div class='container-fluid'>
-<h1>Meetings</h1>
 
-<form>
+<form class="my-3">
     <select name="timezone">
         {% for tz in common_timezones %}
         <option value="{{ tz }}" {% if tz == timezone %} selected="selected"{% endif %}>{{ tz }}</option>
         {% endfor %}
     </select>
 
-    <input type='submit' value='Change Time Zone'>
+    <input type='submit' value='Change Time Zone' class='btn btn-sm btn-secondary'>
 </form>
 
-{% for meeting in object_list %}
-<p>
-  <b>{{ meeting.title }}</b><br>
-  {{ meeting.organization }}<br>
-  {{ meeting.topic }}<br>
-  on {{ meeting.datetime|timezone:timezone }}<br>
-  at {{ meeting.location }}<br>
-  <a href="{{ meeting.link }}">{{ meeting.link }}</a>
-</p>
-{% empty %}
-<p>No meetings yet.</p>
-{% endfor %}
 </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>What</th>
+      <th>Who</th>
+      <th>When</th>
+      <th>Where</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for meeting in object_list %}
+    <tr>
+      <td>
+        <a href="{{ meeting.link }}">{{ meeting.title }}</a>
+        <br>{{ meeting.topic }}
+      </td>
+      <td>{{ meeting.organization }}</td>
+      <td>{{ meeting.datetime|timezone:timezone }}</td>
+      <td>{{ meeting.location }}</td>
+    </tr>
+    {% empty %}
+    <p>No meetings yet.</p>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
