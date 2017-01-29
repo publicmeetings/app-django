@@ -1,5 +1,8 @@
+{% extends 'base.html' %}
 {% load tz %}
 
+{% block content %}
+<div class='container-fluid'>
 <h1>Meetings</h1>
 
 <form>
@@ -24,3 +27,5 @@
 {% empty %}
 <p>No meetings yet.</p>
 {% endfor %}
+</div>
+{% endblock %}
