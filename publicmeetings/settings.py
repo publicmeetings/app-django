@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'publicmeetings',
         'OPTIONS': {
-            'read_default_file': os.path.join(BASE_DIR, "etc/my.cnf"),
+            'read_default_file': os.path.join(BASE_DIR, "etc/mysql/dev.cnf"),
         },
     }
 }
