@@ -3,7 +3,7 @@ from .base import *
 with open('/etc/django/secret_key.txt') as f:
   SECRET_KEY = f.read().strip()
 
-SRV_SHARED_DIR = '/srv/publicmeetings/shared/'
+SRV_SHARED_DIR = '/srv/app-django/shared/'
 
 DEBUG = False
 

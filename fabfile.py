@@ -6,7 +6,7 @@ from fabric.context_managers import settings
 DJANGO_ENV = None
 
 CONFIG = {}
-CONFIG['APACHE_CONF_DIR'] = '/etc/httpd/conf.d'
+CONFIG['APACHE_CONF_DIR'] = '/etc/apache2'
 CONFIG['REPO_SRV'] = 'git@github.com'
 CONFIG['REPO_OWNER'] = 'publicmeetings'
 CONFIG['REPO_NAME'] = 'app-django'
@@ -112,19 +112,19 @@ def deploy():
     run('ln -s %(SRV_DIR)s/releases/%(current_date)s %(SRV_DIR)s/current' % CONFIG)
 
     # copy apache config file
-    run('sudo cp %(SRV_SOURCE_REPO)s/%(HTTP_CONF_FILE)s %(APACHE_CONF_DIR)s/%(DJANGO_ENV)s.%(REPO_NAME)s.conf.%(current_date)s'
+    run('sudo cp %(SRV_SOURCE_REPO)s/%(HTTP_CONF_FILE)s %(APACHE_CONF_DIR)s/sites-available/%(DJANGO_ENV)s.%(REPO_NAME)s.conf.%(current_date)s'
          % CONFIG)
 
     # remove old config symlink
     with settings(warn_only=True):
-        run('sudo rm %(APACHE_CONF_DIR)s/%(DJANGO_ENV)s.%(REPO_NAME)s.conf' % CONFIG)
+        run('sudo rm %(APACHE_CONF_DIR)s/sites-enabled/%(DJANGO_ENV)s.%(REPO_NAME)s.conf' % CONFIG)
 
     # symlink current to dated config
-    run('sudo ln -s %(APACHE_CONF_DIR)s/%(DJANGO_ENV)s.%(REPO_NAME)s.conf.%(current_date)s %(APACHE_CONF_DIR)s/%(DJANGO_ENV)s.%(REPO_NAME)s.conf'
+    run('sudo ln -s %(APACHE_CONF_DIR)s/sites-available/%(DJANGO_ENV)s.%(REPO_NAME)s.conf.%(current_date)s %(APACHE_CONF_DIR)s/sites-enabled/%(DJANGO_ENV)s.%(REPO_NAME)s.conf'
          % CONFIG)
 
     # reload Apache
-    run('sudo service httpd reload')
+    run('sudo service apache2 reload')
 
     # collect static files
     manage('collectstatic  --clear --noinput')
@@ -136,7 +136,7 @@ def deploy():
 def manage(command):
     CONFIG['COMMAND'] = command
     with cd('%(SRV_DIR)s/current/%(REPO_NAME)s' % CONFIG):
-        run('source %(SRV_DIR)s/virtualenv/bin/activate && ./manage.py %(COMMAND)s --settings=%(REPO_NAME)s.settings.%(DJANGO_ENV)s'
+        run('source %(SRV_DIR)s/virtualenv/bin/activate && ./manage.py %(COMMAND)s --settings=publicmeetings.settings.%(DJANGO_ENV)s'
              % CONFIG)
 
 
