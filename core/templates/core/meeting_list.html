@@ -8,6 +8,8 @@
 {% block content %}
 <div class='container-fluid'>
 
+<a href="{% url 'meeting-new' %}" class="btn btn-block btn-outline-primary mt-3 hidden-lg-up">Post a meeting</a>
+
 <form class="my-3">
     <select name="timezone">
         {% for tz in common_timezones %}
