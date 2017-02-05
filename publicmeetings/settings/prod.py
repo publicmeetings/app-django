@@ -7,7 +7,7 @@ SRV_SHARED_DIR = '/srv/publicmeetings/shared/'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['publicmeetings.co']
+ALLOWED_HOSTS = ['www.publicmeetings.co']
 
 ADMINS = [
     ('Admins', 'admins@publicmeetings.co')

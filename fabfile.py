@@ -31,8 +31,8 @@ def prod():
 
     _config()
 
-    env.user = 'lev'
-    env.hosts = ['104.131.177.255',]
+    env.user = 'ubuntu'
+    env.hosts = ['52.14.68.5',]
     env.forward_agent = True
 
     CONFIG['DJANGO_ENV'] = DJANGO_ENV
@@ -65,14 +65,10 @@ def setup():
         sudo('chmod 664 ' + log_file)
 
     # set server directory ownership
-    sudo("chown -R %(USERNAME)s:apache %(SRV_DIR)s" % CONFIG)
+    sudo("chown -R %(USERNAME)s:www-data %(SRV_DIR)s" % CONFIG)
 
     # create virtualenv
     run ('virtualenv --no-site-packages %(SRV_DIR)s/virtualenv' % CONFIG)
-
-    # update distribute
-    # run('source %(SRV_DIR)s/virtualenv/bin/activate; pip install -U distribute' % CONFIG)
-    # errors, maybe unnecessary
 
 
 def deploy():
