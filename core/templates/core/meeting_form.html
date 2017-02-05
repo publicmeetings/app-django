@@ -7,7 +7,6 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'form.css' %}">
-<script src="{% static 'form.js' %}"></script>
 {% endblock %}
 
 
@@ -39,4 +38,9 @@
       <input type='submit' value='Save' class='btn btn-primary btn-lg btn-block'>
   </form>
 </div>
+{% endblock %}
+
+
+{% block footer %}
+<script src="{% static 'form.js' %}"></script>
 {% endblock %}
