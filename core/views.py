@@ -40,5 +40,5 @@ class MeetingNew(CreateView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request, 'Meeting saved.')
+        messages.success(self.request, 'Meeting posted.')
         return reverse('meeting-new')
