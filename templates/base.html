@@ -23,7 +23,7 @@
 
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="https://medium.com/@publicmeetings" target="_blank">About</a>
           </li>
         </ul>
         <a href="{% url 'meeting-new' %}" class="btn btn-outline-primary hidden-md-down">Post a meeting</a>
@@ -46,5 +46,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     {% block footer %}{% endblock %}
+
+    <p class="text-center">
+      <a href="https://twitter.com/public_meetings" target="_blank">Follow on Twitter</a>
+      | <a href="https://github.com/publicmeetings" target="_blank">Contribute on GitHub</a>
+    </p>
   </body>
 </html>
