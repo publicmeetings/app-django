@@ -27,11 +27,11 @@ class MeetingNew(CreateView):
     form_class = MeetingForm
 
     def form_valid(self, form):
-        datetime = self.request.POST['datetime']
-        timezone = self.request.POST['timezone']
-        datetime_format = '%m/%d/%y %H:%M'
-        naive_datetime_obj = datetime.strptime(datetime, datetime_format)
-        form.instance.datetime = pytz.timezone(timezone).localize(naive_datetime_obj)
+        date_time = self.request.POST['datetime']
+        time_zone = self.request.POST['timezone'] or settings.TIME_ZONE
+        date_time_format = '%m/%d/%y %H:%M'
+        naive_datetime_obj = datetime.strptime(date_time, date_time_format)
+        form.instance.datetime = pytz.timezone(time_zone).localize(naive_datetime_obj)
         return super(MeetingNew, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
